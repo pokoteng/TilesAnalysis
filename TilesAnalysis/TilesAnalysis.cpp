@@ -27,8 +27,8 @@ bool operator==(const Groups& lhs, const Groups& rhs)
 
 bool Have(int t, int m)
 {
-    for (int i = 0; i<9; i++)
-		if (((t>>i*3)&7)<((m>>i*3)&7))
+	for (int i = 0; i < 9; i++)
+		if (((t >> i * 3) & 7) < ((m >> i * 3) & 7))
 			return false;
 	return true;
 }
@@ -182,14 +182,15 @@ void FindGroups(Tiles_ T, const vector<int>& Componet, vector<Groups>& result, v
             tmp.pop_back();
         }
     }
+
     if(f)
     {
         for(int i=0;i<34;i++)
         {
-            if((T.tiles[i/9]>>(i%9*3))&7)
+			if ((T.tiles[i / 9] >> (i % 9 * 3)) & 7)
             {
-                for(int j=0;j<((T.tiles[i/9]>>(i%9*3))&7);j++)
-                    tmp.push_back(180+i);
+				for (int j = 0; j < ((T.tiles[i / 9] >> (i % 9 * 3)) & 7); j++)
+					tmp.push_back(180 + i);
             }
         }
         Groups G;
@@ -206,27 +207,27 @@ vector<Groups> CountSteps(vector<Groups>& G)
     int total,single,pair,group,pre_group,steps;
     for(int i=0;i<G.size();i++)
     {
-        single=0,pair=0,group=0,pre_group=0;
+		single = 0, pair = 0, group = 0, pre_group = 0;
         for(int j=0;j<G[i].code.size();j++)
         {
             if(G[i].code[j]>=180)
                 single++;
-            else if(G[i].code[j]%40<9)
+			else if (G[i].code[j] % 40 < 9)
                 pair++;
-            else if(G[i].code[j]%40<25)
+			else if (G[i].code[j] % 40 < 25)
                 group++;
             else
                 pre_group++;
         }
-        total = group*3+pre_group*2+pair*2+single;
-        steps = total/3*2+1;
-        steps -= group*2+pre_group+pair;
+		total = group * 3 + pre_group * 2 + pair * 2 + single;
+		steps = total / 3 * 2 + 1;
+		steps -= group * 2 + pre_group + pair;
 
-        if (group+pre_group+pair > total/3+1)
-			steps += group+pre_group+pair-(total/3+1);
+		if (group + pre_group + pair > total / 3 + 1)
+			steps += group + pre_group + pair - (total / 3 + 1);
 
-		if (pre_group!=0&&pre_group>= (total/3+1 - group) && !pair)
-			steps += 1;
+			if (pre_group != 0 && pre_group >= (total / 3 + 1 - group) && !pair)
+				steps += 1;
 
         if(steps<min)
             min = steps;
@@ -234,9 +235,9 @@ vector<Groups> CountSteps(vector<Groups>& G)
         G[i].steps = steps;
     }
 
-    for(int i=0;i<G.size();i++)
+	for (int i = 0; i < G.size(); i++)
     {
-        if(G[i].steps<=min+0)
+		if (G[i].steps <= min + 0)
             ret.push_back(G[i]);
     }
 

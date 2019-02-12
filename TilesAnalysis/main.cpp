@@ -10,7 +10,7 @@ int main()
 	info.hands[0] = 01100; // 萬
 	info.hands[1] = 01001; // 筒
 	info.hands[2] = 01212111; // 條
-	info.hands[3] = 0112; // 字
+	info.hands[3] = 011002; // 字
 
 	//---------門前
 	info.doors[0] = 0; // 萬
@@ -35,5 +35,6 @@ int main()
 
     TilesAnalysis(calc,info,Wall);
 
+	system("pause");
     return 0;
 }
